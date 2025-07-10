@@ -1,0 +1,1 @@
+ ticker = yf.Ticker("TCS.NS")

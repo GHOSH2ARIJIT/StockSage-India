@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Profiler Admin{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Profiler Admin</a></h1>
+{% endblock %}
+{% load static %}
+
+{% block content %}
+{% endblock %}
+
+
+
+{% block footer %}
+
+<script src="{% static 'webpage_1/assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/browser.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/breakpoints.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/util.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/main.js'%}"></script>
+
+            {% endblock %}

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+
+<html>
+{% load static %}
+	<head>
+		<title>Two Column 2 - Halcyonic by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+			<link rel="stylesheet" href="{% static 'webpage_1/assets/css/main.css'%}" />
+			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body class="subpage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Logo -->
+									<h1><a href="/finance-topic-detail/" id="logo">	
+										 {% if page_data %}
+										 {{page_data.Website_name}}
+										 {% endif %}</a></h1>
+
+								<!-- Nav -->
+								<nav id="nav">
+										<a href="/finance-topic-detail/">Homepage</a>
+										<a href="/finance-topic-twocolumnset/">Portfolio Bot </a>
+										<a href="/end-session/">Logout</a>
+									</nav>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Content -->
+				<section id="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-3 col-12-medium">
+
+								<!-- Sidebar -->
+									<section>
+										<header>
+											<h2>Different Sectors</h2>
+										</header>
+										<ul class="link-list">
+											<li><a href="#">Banking</a></li>
+											<li><a href="#">Energy</a></li>
+											<li><a href="#">Helthcare</a></li>
+											<li><a href="#">Automobile</a></li>
+											<li><a href="#">Tele-Communication</a></li>
+											<li><a href="#">Media & Entertainment</a></li>
+										</ul>
+									</section>
+									<section>
+										<header>
+											<h2>Nifty Indicators</h2>
+										</header>
+										<p>
+											{% if page_data %}
+										 {{page_data.Nifty}}
+										 {% endif %}
+										</p>
+										<ul class="link-list">
+											<li><a href="#">Nifty 50</a></li>
+											<li><a href="#">Nifty next 50</a></li>
+											<li><a href="#">Nifty midcap 100</a></li>
+											<li><a href="#">Nifty small 250</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="col-9 col-12-medium imp-medium">
+
+								<!-- Main Content -->
+									<section>
+										<header>
+											<h2>Portfolio Bot </h2>
+											<h3></h3>
+										</header>
+										<h2>Predicted Stock Prices</h2>
+                                        <canvas id="predictionChart" width="800" height="400"></canvas>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-8 col-12-medium">
+
+								<!-- Links -->
+									<section>
+										<h2>Links to Important Stuff</h2>
+										{% if footer_data %}
+										<div>
+											<div class="row">
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">{{footer_data.footer1}}</a></li>
+														<li><a href="#">{{footer_data.footer2}}</a></li>
+														<li><a href="#">{{footer_data.footer3}}</a></li>
+														<li><a href="#">{{footer_data.footer4}}</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">{{footer_data.footer5}}</a></li>
+														<li><a href="#">{{footer_data.footer6}}</a></li>
+														<li><a href="#">{{footer_data.footer7}}</a></li>
+														<li><a href="#">{{footer_data.footer8}}</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">{{footer_data.footer9}}</a></li>
+														<li><a href="#">{{footer_data.footer10}}</a></li>
+														<li><a href="#">{{footer_data.footer11}}</a></li>
+														<li><a href="#">{{footer_data.footer12}}</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">{{footer_data.footer13}}</a></li>
+														<li><a href="#">{{footer_data.footer14}}</a></li>
+														<li><a href="#">{{footer_data.footer15}}</a></li>
+														<li><a href="#">{{footer_data.footer16}}</a></li>
+													</ul>
+													
+										 {% endif %}
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+							<div class="col-4 col-12-medium imp-medium">
+
+								<!-- Blurb -->
+									<section>
+										{% if footer_data %}
+										<h2>{{footer_data.footer_about_title}}</h2>
+										<p>
+											{{footer_data.footer_about}}
+											{% endif %}
+										</p>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					&copy; StockSage AI. All rights reserved. | Design: Arijit Ghosh</a>
+				</div>
+
+		</div>
+
+			<!-- Scripts -->
+		<!-- Scripts -->
+			<script src="{% static 'webpage_1/assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/browser.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/breakpoints.min.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/util.js'%}"></script>
+			<script src="{% static 'webpage_1/assets/js/main.js'%}"></script>
+			<script>
+  // Get predicted data from Django context
+  const predictedData = {{ predicted_data|safe }};
+  console.log("RupakPredicted Data from Django context:", predictedData);
+  const labels = predictedData.map((_, i) => `Day ${i + 1}`);
+
+  const ctx = document.getElementById('predictionChart').getContext('2d');
+  const predictionChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Predicted Stock Value (Normalized)',
+        data: predictedData,
+        borderColor: 'rgba(75, 192, 110, 1)',
+        backgroundColor: 'rgba(75, 100, 192, 0.2)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 2,
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Future Days'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Normalized Price'
+          }
+        }
+      },
+      responsive: true
+    }
+  });
+</script>
+			
+
+
+
+
+	</body>
+</html>
