@@ -33,7 +33,7 @@ def BSE_history_5days(start="2023-01-01",end="2023-12-31"):
 def load_stock_data(input_array):
     # Load the model (this happens once when the module is imported)
     model = tf.keras.models.load_model("D:\project\AI_AGENTS\StockSage-India\lstm_model.h5",compile=False)#path/to/your_model.h5 need to update
-    print(f'model for input shape ********logs: ',model.input_shape)
+    print(f'model for input shape ******logs: ',model.input_shape)
     # Inference function
     prediction = model.predict(input_array)
     return prediction
