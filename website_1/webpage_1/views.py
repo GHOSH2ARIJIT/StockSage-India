@@ -64,6 +64,14 @@ def finance_topic_detail(request):
         return render(request, 'webpage_1/index_finance.html',{'page_data':webpage_static_data, 'footer_data':website_footer_data})
     else:
         return redirect('/admin/login/?next=/')
+    
+
+def finance_topic_onecolumn(request):  
+    if request.user.is_authenticated:
+        return render(request, 'webpage_1\onecolumn.html',{'page_data':webpage_static_data, 'footer_data':website_footer_data})
+    else:
+        return redirect('/admin/login/?next=/')
+
 
 
 #old function not being used anymore..10-07-2025

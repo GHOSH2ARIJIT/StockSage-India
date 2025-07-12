@@ -18,15 +18,18 @@
 							<div class="col-12">
 
 								<!-- Logo -->
-									<h1><a href="/finance-topic-detail/" id="logo">Profiler</a></h1>
+									<h1><a href="/finance-topic-detail/" id="logo">
+										 {% if page_data %}
+										 {{page_data.Website_name}}
+										 {% endif %}</a></h1>
 
 								<!-- Nav -->
 								<nav id="nav">
 										<a href="/finance-topic-detail/">Homepage</a>
-										<a href="/finance-topic-threecolumn/">Three Column</a>
-										<a href="/finance-topic-twocolumn/">Finance</a>
-										<a href="/finance-topic-twocolumnset/">Two Column #2</a>
-										<a href="/finance-topic-onecolumn/">One Column</a>
+										<!--a href="/finance-topic-threecolumn/">Three Column</a>
+										<a href="/finance-topic-twocolumn/">Finance</a-->
+										<a href="/finance-topic-twocolumnset/">Portfolio Bot</a>
+										<a href="/finance-topic-onecolumn/">Charts</a>
 										<a href="/end-session/">Logout</a>
 									</nav>
 
@@ -44,56 +47,31 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>One Column</h2>
-											<h3>A generic one column layout</h3>
+											<h2>Stock Charts</h2>
+											<div class="tradingview-widget-container">
+													<div id="tradingview_chart"></div>
+													<div class="tradingview-widget-copyright">
+														<a href="https://www.tradingview.com/symbols/BSE-TCS/" rel="noopener" target="_blank">
+														<span class="blue-text">TCS Stock Chart</span>
+														</a>
+													</div>
+													<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+													{
+														"symbol": 
+														"BSE:TCS",
+														"width": "100%",
+														"height": "350",
+														"locale": "en",
+														"dateRange": "1d",
+														"colorTheme": "light",
+														"isTransparent": true,
+														"autosize": true
+													}
+													</script>
+													</div>
 										</header>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue
-											vel suscipit ut, dignissim non risus. Vestibulum ante est, fringilla nec placerat
-											eu, vestibulum vitae diam. Integer eget egestas eros. Duis enim erat, mollis quis
-											lacinia eget, blandit nec ipsum. Donec vitae turpis ipsum. Aliquam mauris libero,
-											sagittis in eleifend at, mattis imperdiet velit. Donec urna risus, rutrum molestie
-											varius ac, lacinia sit amet augue. Nam ultrices elementum eros.
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor.
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor.
-										</p>
-									</section>
+
+										</section>
 
 							</div>
 						</div>
@@ -109,39 +87,42 @@
 								<!-- Links -->
 									<section>
 										<h2>Links to Important Stuff</h2>
+										{% if footer_data %}
 										<div>
 											<div class="row">
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">Neque amet dapibus</a></li>
-														<li><a href="#">Sed mattis quis rutrum</a></li>
-														<li><a href="#">Accumsan suspendisse</a></li>
-														<li><a href="#">Eu varius vitae magna</a></li>
+														<li><a href="#">{{footer_data.footer1}}</a></li>
+														<li><a href="#">{{footer_data.footer2}}</a></li>
+														<li><a href="#">{{footer_data.footer3}}</a></li>
+														<li><a href="#">{{footer_data.footer4}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">Neque amet dapibus</a></li>
-														<li><a href="#">Sed mattis quis rutrum</a></li>
-														<li><a href="#">Accumsan suspendisse</a></li>
-														<li><a href="#">Eu varius vitae magna</a></li>
+														<li><a href="#">{{footer_data.footer5}}</a></li>
+														<li><a href="#">{{footer_data.footer6}}</a></li>
+														<li><a href="#">{{footer_data.footer7}}</a></li>
+														<li><a href="#">{{footer_data.footer8}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">Neque amet dapibus</a></li>
-														<li><a href="#">Sed mattis quis rutrum</a></li>
-														<li><a href="#">Accumsan suspendisse</a></li>
-														<li><a href="#">Eu varius vitae magna</a></li>
+														<li><a href="#">{{footer_data.footer9}}</a></li>
+														<li><a href="#">{{footer_data.footer10}}</a></li>
+														<li><a href="#">{{footer_data.footer11}}</a></li>
+														<li><a href="#">{{footer_data.footer12}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">Neque amet dapibus</a></li>
-														<li><a href="#">Sed mattis quis rutrum</a></li>
-														<li><a href="#">Accumsan suspendisse</a></li>
-														<li><a href="#">Eu varius vitae magna</a></li>
+														<li><a href="#">{{footer_data.footer13}}</a></li>
+														<li><a href="#">{{footer_data.footer14}}</a></li>
+														<li><a href="#">{{footer_data.footer15}}</a></li>
+														<li><a href="#">{{footer_data.footer16}}</a></li>
 													</ul>
+													
+										 {% endif %}
 												</div>
 											</div>
 										</div>
@@ -152,14 +133,14 @@
 
 								<!-- Blurb -->
 									<section>
-										<h2>An Informative Text Blurb</h2>
+										{% if footer_data %}
+										<h2>{{footer_data.footer_about_title}}</h2>
 										<p>
-											Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
-											varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
-											dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
-											lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
+											{{footer_data.footer_about}}
+											{% endif %}
 										</p>
 									</section>
+								
 
 							</div>
 						</div>
@@ -180,6 +161,8 @@
 			<script src="{% static 'webpage_1/assets/js/breakpoints.min.js'%}"></script>
 			<script src="{% static 'webpage_1/assets/js/util.js'%}"></script>
 			<script src="{% static 'webpage_1/assets/js/main.js'%}"></script>
+		
+ 
 
 	</body>
 </html>
