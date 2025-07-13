@@ -77,10 +77,25 @@ WSGI_APPLICATION = 'website_1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
+
+
+#Start Database Server: pg_ctl -D "C:\Program Files\PostgreSQL\15\data" start
+#check status: pg_ctl -D "C:\Program Files\PostgreSQL\15\data" status
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'stockdb',
+        'USER':'postgres',
+        'PASSWORD':'Arijit@123',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
