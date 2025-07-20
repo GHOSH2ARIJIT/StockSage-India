@@ -12,6 +12,9 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import ta, json
+from .models import StockPrediction
+from datetime import date
+
 
 
 webpage_static_data={'Website_name':'StockSage AI Agent',
@@ -54,6 +57,12 @@ website_footer_data={
     'footer_about':'Welcome to StockSage India — your AI-powered stock market companion.We bring together real-time data, cutting-edge machine learning, and financial expertise to simplify investing for everyone. Whether you\'re a beginner looking to understand the Nifty 50 or an experienced trader optimizing your portfolio, our tools help you make smarter, faster decisions in the Indian markets. Explore predictions, track technical indicators, and stay informed with sentiment-driven insights — all from one intelligent dashboard.',
 }
 
+
+def show_predictions(request):
+    predictions = StockPrediction.objects.filter(company="TCS").order_by('-prediction_date')
+    return render(request, 'your_template.html', {'predictions': predictions})
+
+
 def protected_view(request):
     logout(request)
     request.session.flush()
@@ -71,6 +80,15 @@ def finance_topic_onecolumn(request):
         return render(request, 'webpage_1\onecolumn.html',{'page_data':webpage_static_data, 'footer_data':website_footer_data})
     else:
         return redirect('/admin/login/?next=/')
+    
+def save_prediction(request):
+    #This is just a sample. You’d replace it with real prediction data.
+    StockPrediction.objects.create(
+        company='TCS',
+        prediction_date=date.today(),
+        predicted_price=5432.75
+    )
+    return HttpResponse("Prediction Saved")
 
 
 

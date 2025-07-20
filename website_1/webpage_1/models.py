@@ -37,16 +37,12 @@ def load_stock_data(input_array):
     # Inference function
     prediction = model.predict(input_array)
     return prediction
-    
 
-    class Customer(models.Model):
-     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField(unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    
-    
-    
-    
-    
+class StockPrediction(models.Model):
+    # your fields here
+    ticker = models.CharField(max_length=10)
+    predicted_price = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.ticker} - {self.predicted_price}"   

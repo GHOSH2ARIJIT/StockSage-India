@@ -85,6 +85,11 @@
 										</header>
 										<h2>Predicted Stock Prices</h2>
                                         <canvas id="predictionChart" width="800" height="400"></canvas>
+										{% for pred in predictions %}
+                                        <p>{{ pred.prediction_date }} — {{ pred.predicted_value }}</p>
+                                        {% endfor %}
+
+
 									</section>
 
 							</div>
