@@ -6,7 +6,7 @@ import pandas as pd
 import json, base64,io
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_exempt 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
@@ -14,6 +14,18 @@ import numpy as np
 import ta, json
 from .models import StockPrediction
 from datetime import date
+import requests
+
+
+
+def save_to_mongo_from_django(request):
+    data = {
+        "company": "TCS",
+        "prediction": "Buy"
+    }
+    response = requests.post("http://127.0.0.1:8000/fastapi/save/", json=data)
+    return JsonResponse({"mongo_response": response.json()})
+
 
 
 
@@ -88,7 +100,8 @@ def save_prediction(request):
         prediction_date=date.today(),
         predicted_price=5432.75
     )
-    return HttpResponse("Prediction Saved")
+  
+
 
 
 

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,15 +79,13 @@ WSGI_APPLICATION = 'website_1.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 #DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': BASE_DIR / 'db.sqlite3',
-    #}
+#   'default': {
+#      'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': BASE_DIR / 'db.sqlite3',
+#    }
 #}
 
 
-#Start Database Server: pg_ctl -D "C:\Program Files\PostgreSQL\15\data" start
-#check status: pg_ctl -D "C:\Program Files\PostgreSQL\15\data" status
 
 DATABASES = {
     'default': {
