@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 			<link rel="stylesheet" href="{% static 'webpage_1/assets/css/main.css'%}" />
 			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+			
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
@@ -83,11 +84,8 @@
 											<h2>Portfolio Bot </h2>
 											<h3></h3>
 										</header>
-										<h2>Predicted Stock Prices</h2>
-                                        <canvas id="predictionChart" width="800" height="400"></canvas>
-										{% for pred in predictions %}
-                                        <p>{{ pred.prediction_date }} — {{ pred.predicted_value }}</p>
-                                        {% endfor %}
+										
+                                        {{ chart_html|safe }}
 
 
 									</section>
@@ -106,39 +104,39 @@
 								<!-- Links -->
 									<section>
 										<h2>Links to Important Stuff</h2>
-										{% if footer_data %}
+										{% if footer_mongodata %}
 										<div>
 											<div class="row">
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer1}}</a></li>
-														<li><a href="#">{{footer_data.footer2}}</a></li>
-														<li><a href="#">{{footer_data.footer3}}</a></li>
-														<li><a href="#">{{footer_data.footer4}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer1}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer2}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer3}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer4}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer5}}</a></li>
-														<li><a href="#">{{footer_data.footer6}}</a></li>
-														<li><a href="#">{{footer_data.footer7}}</a></li>
-														<li><a href="#">{{footer_data.footer8}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer5}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer6}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer7}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer8}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer9}}</a></li>
-														<li><a href="#">{{footer_data.footer10}}</a></li>
-														<li><a href="#">{{footer_data.footer11}}</a></li>
-														<li><a href="#">{{footer_data.footer12}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer9}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer10}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer11}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer12}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer13}}</a></li>
-														<li><a href="#">{{footer_data.footer14}}</a></li>
-														<li><a href="#">{{footer_data.footer15}}</a></li>
-														<li><a href="#">{{footer_data.footer16}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer13}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer14}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer15}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer16}}</a></li>
 													</ul>
 													
 										 {% endif %}
@@ -152,13 +150,14 @@
 
 								<!-- Blurb -->
 									<section>
-										{% if footer_data %}
-										<h2>{{footer_data.footer_about_title}}</h2>
+										{% if footer_mongodata %}
+										<h2>{{footer_mongodata.footer_about_title}}</h2>
 										<p>
-											{{footer_data.footer_about}}
+											{{footer_mongodata.footer_about}}
 											{% endif %}
 										</p>
 									</section>
+								
 
 							</div>
 						</div>
@@ -170,7 +169,7 @@
 					&copy; StockSage AI. All rights reserved. | Design: Arijit Ghosh</a>
 				</div>
 
-		</div>
+		
 
 			<!-- Scripts -->
 		<!-- Scripts -->
@@ -180,48 +179,46 @@
 			<script src="{% static 'webpage_1/assets/js/util.js'%}"></script>
 			<script src="{% static 'webpage_1/assets/js/main.js'%}"></script>
 			<script>
-  // Get predicted data from Django context
-  const predictedData = {{ predicted_data|safe }};
-  console.log("RupakPredicted Data from Django context:", predictedData);
-  const labels = predictedData.map((_, i) => `Day ${i + 1}`);
+					// Get predicted data from Django context
+					//const predictedData = {{ predicted_data|safe}};
+					console.log("RupakPredicted Data from Django context:", predictedData);
+					const labels = predictedData.map((_, i) => `Day ${i + 1}`);
 
-  const ctx = document.getElementById('predictionChart').getContext('2d');
-  const predictionChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Predicted Stock Value (Normalized)',
-        data: predictedData,
-        borderColor: 'rgba(75, 192, 110, 1)',
-        backgroundColor: 'rgba(75, 100, 192, 0.2)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 2,
-      }]
-    },
-    options: {
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Future Days'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Normalized Price'
-          }
-        }
-      },
-      responsive: true
-    }
-  });
+					const ctx = document.getElementById('predictionChart').getContext('2d');
+					const predictionChart = new Chart(ctx, {
+						type: 'line',
+						data: {
+						labels: labels,
+						datasets: [{
+							label: 'Predicted Stock Value (Normalized)',
+							data: predictedData,
+							borderColor: 'rgba(75, 192, 110, 1)',
+							backgroundColor: 'rgba(75, 100, 192, 0.2)',
+							fill: true,
+							tension: 0.3,
+							pointRadius: 2,
+						}]
+						},
+						options: {
+						scales: {
+							x: {
+							title: {
+								display: true,
+								text: 'Future Days'
+							}
+							},
+							y: {
+							title: {
+								display: true,
+								text: 'Normalized Price'
+							}
+							}
+						},
+						responsive: true
+						}
+					});
 </script>
 			
-
-
 
 
 	</body>

@@ -28,7 +28,7 @@
 								<!-- Nav -->
 									<nav id="nav">
 										<a href="/finance-topic-detail/">Homepage</a>
-										<a href="/finance-topic-twocolumnset/">Portfolio Bot</a>
+										<a href="/candlestick/">Portfolio Bot</a>
 										<!--a href="/finance-topic-threecolumn/">Three Column</a>
 										<a href="/finance-topic-twocolumn/">Finance</a-->
 										<a href="/finance-topic-onecolumn/">Charts</a>
@@ -208,39 +208,39 @@
 								<!-- Links -->
 									<section>
 										<h2>Links to Important Stuff</h2>
-										{% if footer_data %}
+										{% if footer_mongodata %}
 										<div>
 											<div class="row">
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer1}}</a></li>
-														<li><a href="#">{{footer_data.footer2}}</a></li>
-														<li><a href="#">{{footer_data.footer3}}</a></li>
-														<li><a href="#">{{footer_data.footer4}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer1}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer2}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer3}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer4}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer5}}</a></li>
-														<li><a href="#">{{footer_data.footer6}}</a></li>
-														<li><a href="#">{{footer_data.footer7}}</a></li>
-														<li><a href="#">{{footer_data.footer8}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer5}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer6}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer7}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer8}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer9}}</a></li>
-														<li><a href="#">{{footer_data.footer10}}</a></li>
-														<li><a href="#">{{footer_data.footer11}}</a></li>
-														<li><a href="#">{{footer_data.footer12}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer9}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer10}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer11}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer12}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer13}}</a></li>
-														<li><a href="#">{{footer_data.footer14}}</a></li>
-														<li><a href="#">{{footer_data.footer15}}</a></li>
-														<li><a href="#">{{footer_data.footer16}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer13}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer14}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer15}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer16}}</a></li>
 													</ul>
 													
 										 {% endif %}
@@ -254,13 +254,14 @@
 
 								<!-- Blurb -->
 									<section>
-										{% if footer_data %}
-										<h2>{{footer_data.footer_about_title}}</h2>
+										{% if footer_mongodata %}
+										<h2>{{footer_mongodata.footer_about_title}}</h2>
 										<p>
-											{{footer_data.footer_about}}
+											{{footer_mongodata.footer_about}}
 											{% endif %}
 										</p>
 									</section>
+								
 
 							</div>
 						</div>
@@ -272,7 +273,7 @@
 					&copy; StockSage AI. All rights reserved. | Design: Arijit Ghosh</a>
 				</div>
 
-		</div>
+		
 
 		<!-- Scripts -->
 			<script src="{% static 'webpage_1/assets/js/jquery.min.js'%}"></script>

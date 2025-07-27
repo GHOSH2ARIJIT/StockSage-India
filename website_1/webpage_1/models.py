@@ -16,18 +16,25 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from mongoengine import connect
+from pymongo import MongoClient
 
-
-connect('your_db_name', host='mongodb://localhost:27017/your_db_name')
+#Setup MongoDB client
+client = MongoClient("mongodb://localhost:27017/")
+db = client["stocksage_db"]
+footer_collection = db["footer_data"]
+webpage_static_collection = db["webpage_static_data"]
 
 
 
 # Fetch all users
 users = User.objects.all()
 
-# Get a specific user by username
-#user = User.objects.get(username="example_username")
-#print(user.email)
+
+def footer_text_data():
+    return footer_collection.find_one({}, {'_id': 0})
+
+def web_static_data():
+    return webpage_static_collection.find_one({}, {'_id': 0})
 
 def BSE_history_5days(start="2023-01-01",end="2023-12-31"):
     bse_ = yf.Ticker("^BSESN")
@@ -37,7 +44,7 @@ def BSE_history_5days(start="2023-01-01",end="2023-12-31"):
 
 def load_stock_data(input_array):
     # Load the model (this happens once when the module is imported)
-    model = tf.keras.models.load_model("D:\project\AI_AGENTS\StockSage-India\lstm_model.h5",compile=False)#path/to/your_model.h5 need to update
+    model = tf.keras.models.load_model("lstm_model.h5",compile=False)#path/to/your_model.h5 need to update
     #print(f'model for input shape ******logs: ',model.input_shape)
     # Inference function
     prediction = model.predict(input_array)
@@ -49,5 +56,5 @@ class StockPrediction(models.Model):
     predicted_price = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.ticker} - {self.predicted_price}"   
+def __str__(self):
+    return f"{self.ticker} - {self.predicted_price}"   

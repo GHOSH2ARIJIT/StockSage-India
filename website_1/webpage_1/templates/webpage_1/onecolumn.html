@@ -28,7 +28,7 @@
 										<a href="/finance-topic-detail/">Homepage</a>
 										<!--a href="/finance-topic-threecolumn/">Three Column</a>
 										<a href="/finance-topic-twocolumn/">Finance</a-->
-										<a href="/finance-topic-twocolumnset/">Portfolio Bot</a>
+										<a href="/candlestick/">Portfolio Bot</a>
 										<a href="/finance-topic-onecolumn/">Charts</a>
 										<a href="/end-session/">Logout</a>
 									</nav>
@@ -46,29 +46,32 @@
 
 								<!-- Main Content -->
 									<section>
+									
 										<header>
+											<header>
 											<h2>Stock Charts</h2>
 											<div class="tradingview-widget-container">
-													<div id="tradingview_chart"></div>
-													<div class="tradingview-widget-copyright">
-														<a href="https://www.tradingview.com/symbols/BSE-TCS/" rel="noopener" target="_blank">
-														<span class="blue-text">TCS Stock Chart</span>
-														</a>
-													</div>
-													<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-													{
-														"symbol": 
-														"BSE:TCS",
-														"width": "100%",
-														"height": "350",
-														"locale": "en",
-														"dateRange": "1d",
-														"colorTheme": "light",
-														"isTransparent": true,
-														"autosize": true
-													}
-													</script>
-													</div>
+												<div id="tradingview_chart"></div>
+												<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+												<script type="text/javascript">
+												new TradingView.widget({
+													"width": "100%",
+													"height": 500,
+													"symbol": "BSE:TCS",
+													"interval": "D",
+													"timezone": "Etc/UTC",
+													"theme": "light",
+													"style": "1",
+													"locale": "en",
+													"toolbar_bg": "#f1f3f6",
+													"enable_publishing": false,
+													"allow_symbol_change": true,
+													"container_id": "tradingview_chart"
+												});
+												</script>
+											</div>
+											</header>
+
 										</header>
 
 										</section>
@@ -87,39 +90,39 @@
 								<!-- Links -->
 									<section>
 										<h2>Links to Important Stuff</h2>
-										{% if footer_data %}
+										{% if footer_mongodata %}
 										<div>
 											<div class="row">
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer1}}</a></li>
-														<li><a href="#">{{footer_data.footer2}}</a></li>
-														<li><a href="#">{{footer_data.footer3}}</a></li>
-														<li><a href="#">{{footer_data.footer4}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer1}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer2}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer3}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer4}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer5}}</a></li>
-														<li><a href="#">{{footer_data.footer6}}</a></li>
-														<li><a href="#">{{footer_data.footer7}}</a></li>
-														<li><a href="#">{{footer_data.footer8}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer5}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer6}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer7}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer8}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer9}}</a></li>
-														<li><a href="#">{{footer_data.footer10}}</a></li>
-														<li><a href="#">{{footer_data.footer11}}</a></li>
-														<li><a href="#">{{footer_data.footer12}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer9}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer10}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer11}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer12}}</a></li>
 													</ul>
 												</div>
 												<div class="col-3 col-12-small">
 													<ul class="link-list last-child">
-														<li><a href="#">{{footer_data.footer13}}</a></li>
-														<li><a href="#">{{footer_data.footer14}}</a></li>
-														<li><a href="#">{{footer_data.footer15}}</a></li>
-														<li><a href="#">{{footer_data.footer16}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer13}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer14}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer15}}</a></li>
+														<li><a href="#">{{footer_mongodata.footer16}}</a></li>
 													</ul>
 													
 										 {% endif %}
@@ -133,10 +136,10 @@
 
 								<!-- Blurb -->
 									<section>
-										{% if footer_data %}
-										<h2>{{footer_data.footer_about_title}}</h2>
+										{% if footer_mongodata %}
+										<h2>{{footer_mongodata.footer_about_title}}</h2>
 										<p>
-											{{footer_data.footer_about}}
+											{{footer_mongodata.footer_about}}
 											{% endif %}
 										</p>
 									</section>
@@ -149,12 +152,10 @@
 
 			<!-- Copyright -->
 				<div id="copyright">
-					&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
+					&copy; StockSage AI. All rights reserved. | Design: Arijit Ghosh</a>
 				</div>
 
-		</div>
-
-		<!-- Scripts -->
+		
 		<!-- Scripts -->
 			<script src="{% static 'webpage_1/assets/js/jquery.min.js'%}"></script>
 			<script src="{% static 'webpage_1/assets/js/browser.min.js'%}"></script>
