@@ -1,1 +1,1 @@
- ticker = yf.Ticker("TCS.NS")
+path('finance-topic-twocolumnset/', views.finance_topic_twocolumnset, name='finance_topic_twocolumnset'),
